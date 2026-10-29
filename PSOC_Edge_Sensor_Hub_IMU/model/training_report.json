@@ -1,0 +1,41 @@
+{
+  "features": [
+    "population variance of ax^2+ay^2+az^2 over 100 samples",
+    "mean gx^2+gy^2+gz^2 over 100 samples"
+  ],
+  "window_samples": 100,
+  "sample_rate_hz": 50,
+  "windows_total": 53,
+  "windows_train": 42,
+  "windows_temporal_holdout": 11,
+  "temporal_holdout_accuracy": 0.9090909090909091,
+  "training_accuracy_all_windows": 1.0,
+  "temporal_holdout_confusion": {
+    "repos": {
+      "repos": 5,
+      "mouvement": 0
+    },
+    "mouvement": {
+      "repos": 1,
+      "mouvement": 5
+    }
+  },
+  "thresholds_temporal_holdout": {
+    "acc_variance": 65.99281598828047,
+    "gyro_energy": 0.09254038536367
+  },
+  "thresholds_final_all_data": {
+    "acc_variance": 21.60857466881391,
+    "gyro_energy": 0.021518428999405002
+  },
+  "class_counts": {
+    "repos": 25,
+    "mouvement": 28
+  },
+  "source_window_counts": {
+    "repos": 25,
+    "mouvement": 13,
+    "saut": 15
+  },
+  "warning": "Only three continuous capture sessions are available; this holdout score does not prove performance on new sessions. The rest capture includes one orientation only."
+}

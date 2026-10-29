@@ -1,0 +1,599 @@
+/*******************************************************************************
+ * File Name:   sensor_hub_daq_task.c
+ *
+ * Description: This file contains the task that initializes and configures the
+ *              bmi270 Motion Sensor and displays the sensor orientation.
+ *
+ * Related Document: See README.md
+ *
+ *
+ *******************************************************************************
+ * (c) 2023-2026, Infineon Technologies AG, or an affiliate of Infineon
+ * Technologies AG. All rights reserved.
+ * This software, associated documentation and materials ("Software") is
+ * owned by Infineon Technologies AG or one of its affiliates ("Infineon")
+ * and is protected by and subject to worldwide patent protection, worldwide
+ * copyright laws, and international treaty provisions. Therefore, you may use
+ * this Software only as provided in the license agreement accompanying the
+ * software package from which you obtained this Software. If no license
+ * agreement applies, then any use, reproduction, modification, translation, or
+ * compilation of this Software is prohibited without the express written
+ * permission of Infineon.
+ *
+ * Disclaimer: UNLESS OTHERWISE EXPRESSLY AGREED WITH INFINEON, THIS SOFTWARE
+ * IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING, BUT NOT LIMITED TO, ALL WARRANTIES OF NON-INFRINGEMENT OF
+ * THIRD-PARTY RIGHTS AND IMPLIED WARRANTIES SUCH AS WARRANTIES OF FITNESS FOR A
+ * SPECIFIC USE/PURPOSE OR MERCHANTABILITY.
+ * Infineon reserves the right to make changes to the Software without notice.
+ * You are responsible for properly designing, programming, and testing the
+ * functionality and safety of your intended application of the Software, as
+ * well as complying with any legal requirements related to its use. Infineon
+ * does not guarantee that the Software will be free from intrusion, data theft
+ * or loss, or other breaches ("Security Breaches"), and Infineon shall have
+ * no liability arising out of any Security Breaches. Unless otherwise
+ * explicitly approved by Infineon, the Software may not be used in any
+ * application where a failure of the Product or any consequences of the use
+ * thereof can reasonably be expected to result in personal injury.
+*******************************************************************************/
+
+/*******************************************************************************
+* Header Files
+*******************************************************************************/
+#include "mtb_hal.h"
+#include "cybsp.h"
+#include "semphr.h"
+#include "mtb_bmi270.h"
+#include "sensor_hub_daq_task.h"
+#include "retarget_io_init.h"
+
+/*******************************************************************************
+* Macros
+*******************************************************************************/
+#define GRAVITY_EARTH                       (9.80665f)
+#define DEG_TO_RAD                          (0.01745f)
+#define GYR_RANGE_DPS                       (2000.0f)
+#define ACC_RANGE_2G                        (2.0f)
+#define RESET_VAL_ZERO                      (0)
+
+#if defined(APP_IMU_DATASET_MODE)
+/* Change this value before recording each activity class. */
+#define IMU_DATASET_LABEL                   "repos"
+#endif
+
+/* Custom app module ID to avoid collisions */
+#define APP_RSLT_MODULE_ID                  (1U)
+
+/* App error for task creation failure */
+#define APP_RSLT_ACQ_TASK_CREATE_FAILED     CY_RSLT_CREATE(CY_RSLT_TYPE_ERROR,\
+                                                        APP_RSLT_MODULE_ID,\
+                                                        1U)
+
+/*******************************************************************************
+* Global Variables
+*******************************************************************************/
+static mtb_hal_i2c_t CYBSP_I2C_CONTROLLER_hal_obj;
+static cy_stc_scb_i2c_context_t CYBSP_I2C_CONTROLLER_context;
+
+static mtb_bmi270_data_t bmi270_data;
+static mtb_bmi270_t bmi270;
+
+static cy_en_scb_i2c_status_t initStatus;
+static cy_rslt_t result;
+
+/* GPIO connected to the BMI270 INT1 output: P21.7 on this board. */
+static mtb_hal_gpio_t imu_int1_gpio;
+static TaskHandle_t sensor_hub_daq_task_handle = NULL;
+
+#if !defined(APP_IMU_DATASET_MODE)
+static int8_t set_feature_config(struct bmi2_dev *bmi2_dev);
+static void init_imu_motion_interrupt(void);
+#endif
+
+/* Print the failing startup step and keep a fast LED error pattern visible. */
+static void daq_startup_error(const char *step, int32_t code)
+{
+    printf("ERREUR initialisation: %s (code %ld)\r\n", step, (long)code);
+    while (!(Cy_SCB_UART_IsTxComplete(CYBSP_DEBUG_UART_HW)))
+    {
+    }
+
+    __disable_irq();
+    for (;;)
+    {
+        Cy_GPIO_Inv(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_PIN);
+        Cy_SysLib_Delay(150U);
+    }
+}
+
+#if !defined(APP_IMU_DATASET_MODE)
+/* Wake the acquisition task; sensor reads and printf stay in task context. */
+static void imu_motion_callback(void *callback_arg, mtb_hal_gpio_event_t event)
+{
+    (void)callback_arg;
+    (void)event;
+
+    BaseType_t higher_priority_task_woken = pdFALSE;
+    vTaskNotifyGiveFromISR(sensor_hub_daq_task_handle, &higher_priority_task_woken);
+    portYIELD_FROM_ISR(higher_priority_task_woken);
+}
+
+/* Dispatches the PSoC GPIO interrupt to the registered GPIO callback. */
+static void imu_int1_isr(void)
+{
+    (void)mtb_hal_gpio_process_interrupt(&imu_int1_gpio);
+}
+
+/* Configures the PSoC input connected to the BMI270 INT1 output. */
+static void init_imu_motion_interrupt(void)
+{
+    cy_stc_sysint_t imu_int1_irq_cfg =
+    {
+        .intrSrc = ioss_interrupts_gpio_21_IRQn,
+        .intrPriority = 2U
+    };
+
+    mtb_hal_gpio_setup(&imu_int1_gpio, 21U, 7U);
+    mtb_hal_gpio_configure(&imu_int1_gpio,
+                           MTB_HAL_GPIO_DIR_INPUT,
+                           MTB_HAL_GPIO_DRIVE_PULL_NONE);
+    mtb_hal_gpio_register_callback(&imu_int1_gpio, imu_motion_callback, NULL);
+    mtb_hal_gpio_enable_event(&imu_int1_gpio, MTB_HAL_GPIO_IRQ_FALL, true);
+
+    if (CY_SYSINT_SUCCESS != Cy_SysInt_Init(&imu_int1_irq_cfg, imu_int1_isr))
+    {
+        handle_app_error();
+    }
+
+    NVIC_EnableIRQ(ioss_interrupts_gpio_21_IRQn);
+}
+#endif
+
+
+/*******************************************************************************
+ * Function Name: lsb_to_mps2
+ *******************************************************************************
+* Summary:
+* This function converts the raw sensor value to meter/sec^2.
+*
+* Parameters:
+*  val       raw value
+*  g_range   The accelerometer range is expressed in multiples of g.
+*  bit_width data width in bits
+*
+* Return:
+*  float
+*
+*******************************************************************************/
+static float lsb_to_mps2(int16_t val, int8_t g_range, uint8_t bit_width)
+{
+    float half_scale = (float) (1u << (bit_width - 1u));
+
+    return ((GRAVITY_EARTH)*val * g_range) / half_scale;
+}
+
+/*******************************************************************************
+ * Function Name: lsb_to_rps
+ *******************************************************************************
+* Summary:
+* This function converts the raw gyroscope sensor value to rad/sec.
+*
+* Parameters:
+*  val       raw value
+*  dps       The gyroscope sensor range in degrees per second
+*  bit_width data width in bits
+*
+* Return:
+*  float
+*
+*******************************************************************************/
+static float lsb_to_rps(int16_t val, float dps, uint8_t bit_width)
+{
+    float half_scale = (float) (1u << (bit_width - 1u));
+
+    return ((DEG_TO_RAD) * ((dps) / (half_scale)) * (val));
+}
+
+/*******************************************************************************
+ * Function Name: motion_sensor_update_orientation
+ *******************************************************************************
+ * Summary:
+ *  Function that updates the orientation status to one of the 6 types,
+ *  'ORIENTATION_UP, ORIENTATION_DOWN, TOP_EDGE, BOTTOM_EDGE,
+ *  LEFT_EDGE, and RIGHT_EDGE'. This functions detects the axis that is most 
+ *  perpendicular to the ground based on the absolute value of acceleration in 
+ *  that axis. The sign of the acceleration signifies whether the axis is 
+ *  facing the ground or the opposite.
+ *
+ * Return:
+ *  CY_RSLT_SUCCESS upon successful orientation update, else a non-zero value
+ *  that indicates the error.
+ *
+ ******************************************************************************/
+static cy_rslt_t motion_sensor_update_orientation(void)
+{
+    int16_t abs_x;
+    int16_t abs_y;
+    int16_t abs_z;
+
+    /* Use the sample already read by the interrupt-driven task. */
+    abs_x = abs(bmi270_data.sensor_data.acc.x);
+    abs_y = abs(bmi270_data.sensor_data.acc.y);
+    abs_z = abs(bmi270_data.sensor_data.acc.z);
+
+    if ((abs_z > abs_x) && (abs_z > abs_y))
+    {
+        if (bmi270_data.sensor_data.acc.z < RESET_VAL_ZERO)
+        {
+            /* Kit faces down (towards the ground) */
+            printf("Orientation = ORIENTATION_DOWN       \r\n");
+        }
+        else
+        {
+            /* Kit faces up (towards the sky/ceiling) */
+            printf("Orientation = ORIENTATION_UP         \r\n");
+        }
+    }
+    /* Y axis (parallel with shorter edge of board) is most aligned with
+     * gravity.
+     */
+    else if ((abs_y > abs_x) && (abs_y > abs_z))
+    {
+        if (bmi270_data.sensor_data.acc.y > RESET_VAL_ZERO)
+        {
+            /* Kit has an inverted landscape orientation */
+            printf("Orientation = ORIENTATION_BOTTOM_EDGE\r\n");
+        }
+        else
+        {
+            /* Kit has landscape orientation */
+            printf("Orientation = ORIENTATION_TOP_EDGE  \r\n");
+        }
+    }
+    /* X axis (parallel with longer edge of board) is most aligned with
+     * gravity.
+     */
+    else
+    {
+        if (bmi270_data.sensor_data.acc.x < RESET_VAL_ZERO)
+        {
+            /* Kit has an inverted portrait orientation */
+            printf("Orientation = ORIENTATION_RIGHT_EDGE \r\n");
+        }
+        else
+        {
+            /* Kit has portrait orientation */
+            printf("Orientation = ORIENTATION_LEFT_EDGE  \r\n");
+        }
+    }
+    return CY_RSLT_SUCCESS;
+}
+
+/*******************************************************************************
+ * Function Name: sensor_hub_daq_task
+ *******************************************************************************
+* Summary:
+* This function initializes the I2C and BMI270 sensor, reads the sensor values,
+* and prints them on the UART terminal.
+*
+* Parameters:
+*  void *
+*
+* Return:
+*  void
+*
+*******************************************************************************/
+
+
+
+static void sensor_hub_daq_task(void *pvParameters)
+{
+
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+
+    (void)pvParameters;
+
+    /* Two short flashes show that the uploaded firmware reached this task. */
+    Cy_GPIO_Inv(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_PIN);
+    Cy_SysLib_Delay(150U);
+    Cy_GPIO_Inv(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_PIN);
+    Cy_SysLib_Delay(150U);
+    Cy_GPIO_Inv(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_PIN);
+    Cy_SysLib_Delay(150U);
+    Cy_GPIO_Inv(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_PIN);
+
+#if defined(APP_SENSOR_CORE_CM55)
+    printf("DAQ: tache demarree sur CM55\r\n");
+#else
+    printf("DAQ: tache demarree sur CM33\r\n");
+#endif
+
+    initStatus = Cy_SCB_I2C_Init(CYBSP_I2C_CONTROLLER_HW, 
+                                &CYBSP_I2C_CONTROLLER_config, 
+                                &CYBSP_I2C_CONTROLLER_context);
+
+    /* I2C initialization failed. Stop program execution. */
+    if (CY_SCB_I2C_SUCCESS != initStatus)
+    {
+        daq_startup_error("Cy_SCB_I2C_Init", (int32_t)initStatus);
+    }
+
+    printf("DAQ: I2C initialise\r\n");
+
+    Cy_SCB_I2C_Enable(CYBSP_I2C_CONTROLLER_HW);
+
+    result = mtb_hal_i2c_setup(&CYBSP_I2C_CONTROLLER_hal_obj,
+                                &CYBSP_I2C_CONTROLLER_hal_config, 
+                                &CYBSP_I2C_CONTROLLER_context,
+                                NULL);
+
+    /* HAL I2C setup failed. Stop program execution. */
+    if (CY_RSLT_SUCCESS != result)
+    {
+        daq_startup_error("mtb_hal_i2c_setup", (int32_t)result);
+    }
+
+    printf("DAQ: HAL I2C pret\r\n");
+
+    /* Initialize can configure platform-dependent function pointers. */
+    result = mtb_bmi270_init_i2c(&bmi270, 
+                                &CYBSP_I2C_CONTROLLER_hal_obj, 
+                                MTB_BMI270_ADDRESS_DEFAULT);
+    
+    /* BMI270 sensor initialization failed. Stop program execution. */
+    if (CY_RSLT_SUCCESS != result)
+    {
+        daq_startup_error("mtb_bmi270_init_i2c", (int32_t)result);
+    }
+
+    printf("DAQ: BMI270 detecte\r\n");
+
+    /* Configure accelerometer and gyroscope. */
+    result = mtb_bmi270_config_default(&bmi270);
+
+    /* BMI270 sensor configuration failed. Stop program execution. */
+    if (CY_RSLT_SUCCESS != result)
+    {
+        daq_startup_error("mtb_bmi270_config_default", (int32_t)result);
+    }
+
+    printf("DAQ: configuration BMI270 OK\r\n");
+
+#if !defined(APP_IMU_DATASET_MODE)
+    int8_t feature_result = set_feature_config(&bmi270.sensor);
+    if (BMI2_OK != feature_result)
+    {
+        daq_startup_error("set_feature_config", (int32_t)feature_result);
+    }
+
+    printf("DAQ: detection de mouvement configuree\r\n");
+
+    init_imu_motion_interrupt();
+
+    printf("DAQ: interruption IMU configuree\r\n");
+#else
+    printf("DAQ: mode collecte dataset, echantillonnage 50 Hz\r\n");
+#endif
+
+#if !defined(APP_IMU_DATASET_MODE)
+    /* \x1b[2J\x1b[;H - ANSI ESC sequence for clear screen */
+    printf("\x1b[2J\x1b[;H");
+
+    printf("************************************************************\n");
+    printf("               PSOC Edge MCU: Sensor hub IMU                \n");
+    printf("************************************************************\r\n");
+    printf("Code example configured in data acquisition mode\r\n\n");
+#else
+    printf("t_ms,ax_mps2,ay_mps2,az_mps2,gx_rad_s,gy_rad_s,gz_rad_s,label\r\n");
+#endif
+
+#if defined(APP_IMU_DATASET_MODE)
+    /* Change this label for each recording: repos, mouvement, or saut. */
+    static const char *dataset_label = IMU_DATASET_LABEL;
+    TickType_t last_wake_time = xTaskGetTickCount();
+
+    for (;;)
+    {
+        vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(20U));
+        result = mtb_bmi270_read(&bmi270, &bmi270_data);
+        if (CY_RSLT_SUCCESS != result)
+        {
+            printf("ERREUR lecture BMI270: %ld\r\n", (long)result);
+            continue;
+        }
+
+        float ax = lsb_to_mps2(bmi270_data.sensor_data.acc.x, ACC_RANGE_2G, bmi270.sensor.resolution);
+        float ay = lsb_to_mps2(bmi270_data.sensor_data.acc.y, ACC_RANGE_2G, bmi270.sensor.resolution);
+        float az = lsb_to_mps2(bmi270_data.sensor_data.acc.z, ACC_RANGE_2G, bmi270.sensor.resolution);
+        float gx = lsb_to_rps(bmi270_data.sensor_data.gyr.x, GYR_RANGE_DPS, bmi270.sensor.resolution);
+        float gy = lsb_to_rps(bmi270_data.sensor_data.gyr.y, GYR_RANGE_DPS, bmi270.sensor.resolution);
+        float gz = lsb_to_rps(bmi270_data.sensor_data.gyr.z, GYR_RANGE_DPS, bmi270.sensor.resolution);
+        uint32_t timestamp_ms = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS);
+
+        printf("%lu,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%s\r\n",
+               (unsigned long)timestamp_ms, (double)ax, (double)ay, (double)az,
+               (double)gx, (double)gy, (double)gz, dataset_label);
+        while (!(Cy_SCB_UART_IsTxComplete(CYBSP_DEBUG_UART_HW)))
+        {
+        }
+    }
+#else
+    for (;;)
+    {
+        /* Sleep until the BMI270 signals motion; no periodic IMU polling. */
+        (void)ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+        /* Read interrupt status to discard unrelated GPIO interrupts. */
+        uint16_t int_status = 0U;
+        int8_t bmi_status = bmi2_get_int_status(&int_status, &bmi270.sensor);
+        if (BMI2_OK != bmi_status)
+        {
+            printf("Erreur lecture statut BMI270: %d\r\n", bmi_status);
+            continue;
+        }
+
+        if (!(int_status & BMI270_ANY_MOT_STATUS_MASK))
+        {
+            continue;
+        }
+
+        /* Get accelerometer and gyroscope sensor data. */
+        result = mtb_bmi270_read(&bmi270, &bmi270_data);
+
+        /* BMI270 sensor read failed. Stop program execution. */
+        if (CY_RSLT_SUCCESS != result)
+        {
+            daq_startup_error("mtb_bmi270_read", (int32_t)result);
+        }
+
+        x = lsb_to_mps2(bmi270_data.sensor_data.acc.x, 
+                        ACC_RANGE_2G,
+                        bmi270.sensor.resolution);
+        y = lsb_to_mps2(bmi270_data.sensor_data.acc.y, 
+                        ACC_RANGE_2G,
+                        bmi270.sensor.resolution);
+        z = lsb_to_mps2(bmi270_data.sensor_data.acc.z, 
+                        ACC_RANGE_2G,
+                        bmi270.sensor.resolution);
+        printf("\r\n");
+        printf("Accelerometer: x:%9.6f, y:%9.6f, z:%9.6f m/s^2\r\n",
+                 (double)x, (double)y, (double)z);
+
+        x = lsb_to_rps(bmi270_data.sensor_data.gyr.x, 
+                        GYR_RANGE_DPS,
+                        bmi270.sensor.resolution);
+        y = lsb_to_rps(bmi270_data.sensor_data.gyr.y, 
+                        GYR_RANGE_DPS,
+                        bmi270.sensor.resolution);
+        z = lsb_to_rps(bmi270_data.sensor_data.gyr.z, 
+                        GYR_RANGE_DPS,
+                        bmi270.sensor.resolution);
+        printf("Gyroscope:     x:%9.6f, y:%9.6f, z:%9.6f rad/s\r\n",
+                 (double)x, (double)y, (double)z);
+
+        motion_sensor_update_orientation();
+        printf("\r\n");
+
+        /* Wait for UART traffic to stop */
+        while(!(Cy_SCB_UART_IsTxComplete(CYBSP_DEBUG_UART_HW))) {};
+    }
+#endif
+}
+
+/*******************************************************************************
+* Function Name: create_sensor_hub_daq_task
+********************************************************************************
+* Summary:
+*  Function that creates Sensor Hub data acquisition task
+*
+* Parameters:
+*  None
+*
+* Return:
+*  CY_RSLT_SUCCESS upon successful creation of the motion sensor task, else a
+*  non-zero value that indicates the error.
+*
+*******************************************************************************/
+cy_rslt_t create_sensor_hub_daq_task(void)
+{
+    BaseType_t status;
+
+    sensor_hub_daq_task_handle = NULL;
+
+    /* Create the "sensor_hub_daq" Task */
+    status = xTaskCreate(sensor_hub_daq_task, "Sensor Hub DAQ",
+                            TASK_SENSOR_HUB_DAQ_STACK_SIZE, NULL,
+                            TASK_SENSOR_HUB_DAQ_PRIORITY, &sensor_hub_daq_task_handle);
+
+    return (pdPASS == status) ? \
+        CY_RSLT_SUCCESS : APP_RSLT_ACQ_TASK_CREATE_FAILED;
+}
+
+#if !defined(APP_IMU_DATASET_MODE)
+static int8_t set_feature_config(struct bmi2_dev *bmi2_dev)
+{
+
+    /* Status of api are returned to this variable. */
+    int8_t rslt;
+
+    /* Structure to define the type of sensor and its configurations. */
+    struct bmi2_sens_config config = {0};
+
+    /* Interrupt pin configuration */
+    struct bmi2_int_pin_config pin_config = { 0 };
+
+    /* Configure the type of feature. */
+    config.type = BMI2_ANY_MOTION;
+
+    /* Get default configurations for the type of feature selected. */
+    rslt = bmi270_get_sensor_config(&config, 1, bmi2_dev);
+    printf("ANY_MOTION get_sensor_config: %d\r\n", (int)rslt);
+    if (rslt != BMI2_OK)
+    {
+        return rslt;
+    }
+
+    /* NOTE: The user can change these parameters according to their requirement. */
+    /* 1 LSB equals 20 ms. 0x04 therefore corresponds to 80 ms. */
+    config.cfg.any_motion.duration = 0x10;
+
+    /* 1 LSB equals about 0.48 mg. 0xC8 corresponds to about 96 mg,
+     * requiring a stronger acceleration before reporting motion. */
+    config.cfg.any_motion.threshold = 0xFF;
+
+    /* Write the any-motion settings to the BMI270. */
+    rslt = bmi270_set_sensor_config(&config, 1, bmi2_dev);
+    printf("ANY_MOTION set_sensor_config: %d\r\n", (int)rslt);
+    if (rslt != BMI2_OK)
+    {
+        return rslt;
+    }
+
+    /* Configure the BMI270 INT1 output as active-low, push-pull. */
+    pin_config.pin_type = BMI2_INT1;
+    pin_config.pin_cfg[0].input_en = BMI2_INT_INPUT_DISABLE;
+    pin_config.pin_cfg[0].lvl = BMI2_INT_ACTIVE_LOW;
+    pin_config.pin_cfg[0].od = BMI2_INT_PUSH_PULL;
+    pin_config.pin_cfg[0].output_en = BMI2_INT_OUTPUT_ENABLE;
+    pin_config.int_latch = BMI2_INT_NON_LATCH;
+
+    rslt = bmi2_set_int_pin_config(&pin_config, bmi2_dev);
+    printf("INT1 set_pin_config: %d\r\n", (int)rslt);
+    if (rslt != BMI2_OK)
+    {
+        return rslt;
+    }
+
+    /* Enable the accelerometer and BMI270 any-motion feature.
+     * ANY_MOTION is a BMI270 feature, so use the BMI270-specific API. */
+    uint8_t features[] = { BMI2_ACCEL, BMI2_ANY_MOTION };
+
+    rslt = bmi270_sensor_enable(features, 2, bmi2_dev);
+    printf("ACCEL+ANY_MOTION bmi270_sensor_enable: %d\r\n", (int)rslt);
+    if (rslt != BMI2_OK)
+    {
+        return rslt;
+    }
+
+    /* Route any-motion events to the physical INT1 pin. */
+    struct bmi2_sens_int_config motion_int =
+    {
+        .type = BMI2_ANY_MOTION,
+        .hw_int_pin = BMI2_INT1
+    };
+
+    rslt = bmi270_map_feat_int(&motion_int, 1, bmi2_dev);
+    printf("ANY_MOTION map_feat_int: %d\r\n", (int)rslt);
+    if (rslt != BMI2_OK)
+    {
+        return rslt;
+    }
+
+    return rslt;
+}
+
+#endif /* !APP_IMU_DATASET_MODE */
+
+/* [] END OF FILE */

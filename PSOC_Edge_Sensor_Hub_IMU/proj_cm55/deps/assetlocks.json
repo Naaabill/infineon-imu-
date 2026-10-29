@@ -1,0 +1,66 @@
+[
+    {
+        "asset-name": "abstraction-rtos",
+        "locked-commit": "release-v1.13.0"
+    },
+    {
+        "asset-name": "async-transfer",
+        "locked-commit": "release-v1.1.1"
+    },
+    {
+        "asset-name": "bt-fw-ifx-cyw55500a1",
+        "locked-commit": "release-v2.2.0"
+    },
+    {
+        "asset-name": "BMI270_SensorAPI",
+        "locked-commit": "v2.86.1"
+    },
+    {
+        "asset-name": "clib-support",
+        "locked-commit": "release-v1.9.0"
+    },
+    {
+        "asset-name": "cmsis",
+        "locked-commit": "release-v6.1.1"
+    },
+    {
+        "asset-name": "core-lib",
+        "locked-commit": "release-v1.8.0"
+    },
+    {
+        "asset-name": "core-make",
+        "locked-commit": "release-v3.10.0"
+    },
+    {
+        "asset-name": "device-db",
+        "locked-commit": "release-v4.41.0"
+    },
+    {
+        "asset-name": "freertos",
+        "locked-commit": "release-v10.6.203"
+    },
+    {
+        "asset-name": "mtb-dsl-pse8xxgp",
+        "locked-commit": "release-v1.8.0"
+    },
+    {
+        "asset-name": "mtb-ipc",
+        "locked-commit": "release-v1.2.0"
+    },
+    {
+        "asset-name": "mtb-srf",
+        "locked-commit": "release-v1.2.1"
+    },
+    {
+        "asset-name": "retarget-io",
+        "locked-commit": "release-v1.11.0"
+    },
+    {
+        "asset-name": "sensor-motion-bmi270",
+        "locked-commit": "release-v1.0.0"
+    },
+    {
+        "asset-name": "se-rt-services-utils",
+        "locked-commit": "release-v1.4.0"
+    }
+]

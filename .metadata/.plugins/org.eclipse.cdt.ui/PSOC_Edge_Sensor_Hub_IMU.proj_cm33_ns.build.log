@@ -1,0 +1,326 @@
+11:34:56 **** Incremental Build of configuration Debug for project PSOC_Edge_Sensor_Hub_IMU.proj_cm33_ns ****
+"C:\\Users\\nabil\\ModusToolbox\\tools_3.9\\modus-shell\\bin\\make" CY_MAKE_IDE=eclipse CY_IDE_TOOLS_DIR=C:/Users/nabil/ModusToolbox/tools_3.9 CY_IDE_BT_TOOLS_DIR= -j16 build_proj 
+Searching installed tools in progress...
+Searching installed tools complete
+NOTE: Using 'C:/Users/nabil/ModusToolbox/tools_3.9/ninja/ninja.exe' from PATH.
+Generating mtbninja data files...
+Generating mtbninja data complete...
+Toolchain validation: PASS
+Initializing build: proj_cm33_ns Debug APP_KIT_PSE84_EVAL_EPC2 GCC_ARM
+
+Prebuild operations complete
+# 0: Loading the application in directory 'C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns'
+# 0: Loading the ModusToolbox Technology Packs and Early Access Packs
+# 0: Loading the tools information
+[1/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/TOOLCHAIN_GCC_ARM/cy_syslib_ext.o
+[2/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/async-transfer/source/mtb_async_transfer.o
+[3/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/bt-fw-ifx-cyw55500a1/COMPONENT_wlbga_iPA_sLNA_ANT0_LHL_XTAL_IN/btfw.o
+[4/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/BMI270_SensorAPI/bmi270_context.o
+[5/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/BMI270_SensorAPI/bmi270.o
+[6/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/BMI270_SensorAPI/bmi270_legacy.o
+[7/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/BMI270_SensorAPI/bmi2.o
+[8/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/clib-support/source/COMPONENT_FREERTOS/cy_mutex_pool.o
+[9/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/croutine.o
+[10/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/clib-support/source/TOOLCHAIN_GCC_ARM/cy_clib_support_newlib.o
+[11/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/list.o
+[12/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/event_groups.o
+[13/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/COMPONENT_CM33/TOOLCHAIN_GCC_ARM/COMPONENT_FREERTOS_NTZ/port.o
+[14/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/abstraction-rtos/source/cy_worker_thread.o
+[15/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/COMPONENT_CM33/TOOLCHAIN_GCC_ARM/COMPONENT_FREERTOS_NTZ/mpu_wrappers_v2_asm.o
+[16/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/COMPONENT_CM33/TOOLCHAIN_GCC_ARM/COMPONENT_FREERTOS_NTZ/portasm.o
+[17/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/local/sensor_hub_daq_task.o
+[18/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/local/main.o
+[19/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/abstraction-rtos/source/COMPONENT_FREERTOS/cyabs_rtos_dsram.o
+[20/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/abstraction-rtos/source/COMPONENT_FREERTOS/cyabs_freertos_helpers.o
+[21/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/abstraction-rtos/source/COMPONENT_FREERTOS/cyabs_rtos_freertos.o
+[22/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/clib-support/source/cy_time.o
+[23/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/abstraction-rtos/source/COMPONENT_FREERTOS/cyabs_freertos_common.o
+[24/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/local/retarget_io_init.o
+[25/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/COMPONENT_CM33/TOOLCHAIN_GCC_ARM/COMPONENT_FREERTOS_NTZ/portdsram.o
+[26/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/MemMang/heap_2.o
+[27/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/MemMang/heap_1.o
+[28/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/MemMang/heap_3.o
+[29/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/MemMang/heap_4.o
+[30/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/portable/MemMang/heap_5.o
+[31/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/queue.o
+[32/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/stream_buffer.o
+[33/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/tasks.o
+[34/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/freertos/Source/timers.o
+[35/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_dma.o
+[36/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_nvm.o
+[37/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_i2s_tdm.o
+[38/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_smif.o
+[39/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_pdm_pcm.o
+[40/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_tcpwm.o
+[41/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/device-utils/syspm/source/mtb_syspm_callbacks_scb_uart.o
+[42/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_clock.o
+[43/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_comp.o
+[44/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_adc_sar.o
+[45/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_dma.o
+[46/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_dma_dmac.o
+[47/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_gpio.o
+[48/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_dma_dw.o
+[49/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_lptimer.o
+[50/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_lptimer_mcwdt.o
+[51/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_i2c.o
+[52/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_lptimer_common.o
+[53/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_nvm_mxs22rramc.o
+[54/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_nvm.o
+[55/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_memoryspi.o
+[56/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_pwm.o
+[57/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_spi.o
+[58/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_rtc.o
+[59/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_timer.o
+[60/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_syspm.o
+[61/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_sdhc.o
+[62/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_system.o
+[63/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_utils_impl.o
+[64/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/hal/source/mtb_hal_uart.o
+[65/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_dma_helper.o
+[66/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_kernel.o
+[67/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_autanalog_ctb.o
+[68/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_lstm_step_s8_s16.o
+[69/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_lstm_calculate_gate_s8_s16.o
+[70/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_autanalog_dac.o
+[71/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_lstm_unidirectional_s8_s16.o
+[72/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_autanalog_ptc.o
+[73/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_autanalog_ac.o
+[74/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_axidmac.o
+[75/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_lstm_update_cell_state_s16.o
+[76/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_autanalog.o
+[77/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_aes_v1.o
+[78/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto.o
+[79/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_autanalog_sar.o
+[80/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_canfd.o
+[81/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/nnkernel/COMPONENT_CM33/source/cy_nn_lstm_update_output_s8_s16.o
+[82/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/devices/source/cy_device.o
+[83/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_chacha.o
+[84/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_cmac_v1.o
+[85/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_cmac_v2.o
+[86/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_crc_v1.o
+[87/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_des_v1.o
+[88/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_crc_v2.o
+[89/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_des_v2.o
+[90/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_ecc_domain_params.o
+[91/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_aes_v2.o
+[92/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_hmac_v1.o
+[93/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_hkdf_v2.o
+[94/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_ecc_ecdsa.o
+[95/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_ecc_ec25519.o
+[96/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_hmac_v2.o
+[97/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_mem_v1.o
+[98/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_prng_v1.o
+[99/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_hw.o
+[100/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_hw_v1.o
+[101/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_mem_v2.o
+[102/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_poly1305.o
+[103/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_ecc_eddsa.o
+[104/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_ecc_nist_p.o
+[105/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_ecc_key_gen.o
+[106/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_prng_v2.o
+[107/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_sha_v1.o
+[108/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_sha_v2.o
+[109/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_trng.o
+[110/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_rsa.o
+[111/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_dma.o
+[112/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_utils.o
+[113/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_core_vu.o
+[114/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ipc_drv.o
+[115/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ephy.o
+[116/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_gpio.o
+[117/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_crypto_server.o
+[118/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_mcwdt.o
+[119/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ipc_pipe.o
+[120/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ipc_sema.o
+[121/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_lvd.o
+[122/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_lpcomp.o
+[123/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_mpc.o
+[124/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ms_ctl.o
+[125/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ethif.o
+[126/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_mipidsi.o
+[127/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_pdl_srf.o
+[128/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_nnlite.o
+[129/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_i3c.o
+[130/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_ppc.o
+[131/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_pdm_pcm_v2.o
+[132/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_pdl_srf_common.o
+[133/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_scb_common.o
+[134/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_rram.o
+[135/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_smartio.o
+[136/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_scb_spi.o
+[137/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_scb_ezi2c.o
+[138/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_scb_spi_ez.o
+[139/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_rtc.o
+[140/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_scb_uart.o
+[141/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_scb_i2c.o
+[142/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_smif_hb_flash.o
+[143/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_sd_host.o
+[144/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_sysint_v2.o
+[145/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_smif.o
+[146/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_sysfault.o
+[147/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_smif_memnum.o
+[148/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_syslib.o
+[149/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_smif_sfdp.o
+[150/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_syspm_ppu.o
+[151/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_tcpwm_counter.o
+[152/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_syspm_pdcm.o
+[153/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_smif_memslot.o
+[154/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_systrimm.o
+[155/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_systick_v2.o
+[156/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_sysclk_v2.o
+[157/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_tcpwm_quaddec.o
+[158/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_tcpwm_pwm.o
+[159/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_tcpwm_shiftreg.o
+[160/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_crc32.o
+[161/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_tdm.o
+[162/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_trigmux.o
+[163/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/support/source/mtb_stdlib_stubs.o
+[164/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/ppu_v1.o
+[165/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_syspm_v4.o
+[166/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/bluetooth/cybsp_bt_config.o
+[167/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/source/cy_wdt.o
+[168/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_fih.o
+[169/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/third_party/ethernet/src/edd_tx.o
+[170/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/third_party/ethernet/src/edd_rx.o
+[171/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_psacrypto_pqc.o
+[172/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_platform.o
+[173/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_ss_wifi.o
+[174/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_syscall.o
+[175/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_syscall_builtin.o
+[176/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-dsl-pse8xxgp/pdl/drivers/third_party/ethernet/src/edd.o
+[177/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-srf/source/mtb_srf.o
+[178/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/se-rt-services-utils/ifx_se_psacrypto.o
+[179/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/COMPONENT_CM33/COMPONENT_NON_SECURE_DEVICE/ns_start_pse84.o
+[180/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-srf/source/COMPONENT_NON_SECURE_DEVICE/mtb_srf_pool.o
+[181/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-srf/source/COMPONENT_NON_SECURE_DEVICE/COMPONENT_MW_MTB_IPC/mtb_srf_ipc.o
+[182/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/mtb-ipc/source/mtb_ipc.o
+[183/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_clocks.o
+[184/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_peripheral_clocks.o
+[185/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/external/C/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/model/benchmark/imu_benchmark.o
+[186/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/retarget-io/source/cy_retarget_io.o
+[187/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_protection.o
+[188/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_qspi_memslot.o
+[189/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_pins.o
+[190/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/libraries_shared/sensor-motion-bmi270/mtb_bmi270.o
+[191/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_routing.o
+[192/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/COMPONENT_CM33/COMPONENT_NON_SECURE_DEVICE/ns_system_pse84.o
+[193/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/system_edge.o
+[194/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg.o
+[195/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_system.o
+[196/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_dmas.o
+[197/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/config/GeneratedSource/cycfg_peripherals.o
+[198/199] Building object file C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/Debug/bsps/APP_KIT_PSE84_EVAL_EPC2/cybsp.o
+[199/199] Linking, creating elf file build/APP_KIT_PSE84_EVAL_EPC2/Debug/proj_cm33_ns.elf
+C:/Users/nabil/Infineon/Tools/mtb-gcc-arm-eabi/14.2.1/gcc/bin/arm-none-eabi-objcopy -O ihex C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/APP_KIT_PSE84_EVAL_EPC2/Debug/proj_cm33_ns.elf C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/APP_KIT_PSE84_EVAL_EPC2/Debug/proj_cm33_ns.hex
+C:/Users/nabil/Infineon/Tools/mtb-gcc-arm-eabi/14.2.1/gcc/bin/arm-none-eabi-objcopy -O binary C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/APP_KIT_PSE84_EVAL_EPC2/Debug/proj_cm33_ns.elf C:/Users/nabil/mtw-imu/PSOC_Edge_Sensor_Hub_IMU/proj_cm33_ns/build/APP_KIT_PSE84_EVAL_EPC2/Debug/proj_cm33_ns.bin
+==============================================================================
+= Build complete =
+==============================================================================
+
+  -------------------------------------------------------------------------------------
+ | Memory/Region/Section           |     Offset |                 Used |     Available |
+  -------------------------------------------------------------------------------------
+ | CM55_DTCM_INTERNAL              |            |                5 268 |       262 144 |
+ |   m55_data                      | 0x00000000 | (  2%)         5 268 |       262 144 |
+ |     .data                       | 0x00000000 |                  200 |               |
+ |     .noinit                     | 0x000000c8 |                  152 |               |
+ |     .bss                        | 0x00000160 |                4 916 |               |
+ |   <unallocated>                 |            |                      |             0 |
+  -------------------------------------------------------------------------------------
+ | CM55_ITCM_INTERNAL              |            |               11 680 |       262 144 |
+ |   m55_code                      | 0x00000000 | (  4%)        11 680 |       262 144 |
+ |     .app_code_itcm              | 0x00000000 |               10 920 |               |
+ |     .ram_vectors                | 0x00002c00 |                  760 |               |
+ |   <unallocated>                 |            |                      |             0 |
+  -------------------------------------------------------------------------------------
+ | RRAM                            |            |              159 744 |       524 288 |
+ |   extended_boot_reserved        | 0x00000000 | (100%)        69 632 |        69 632 |
+ |   user_programmable             | 0x00011000 | (  0%)             0 |       303 104 |
+ |   user_nvm                      | 0x0005b000 | (  0%)             0 |        32 768 |
+ |   reserved_region               | 0x0006a000 | (100%)        90 112 |        90 112 |
+ |   <unallocated>                 |            |                      |        28 672 |
+  -------------------------------------------------------------------------------------
+ | SMIF0MEM1                       |            |              125 168 |    16 777 216 |
+ |   m33s_nvm                      | 0x00100000 | (  1%)        29 788 |     2 097 152 |
+ |     .mcu_boot_header            | 0x00000000 |                1 024 |               |
+ |     .vector_table               | 0x00000400 |                1 028 |               |
+ |     .gnu.sgstubs                | 0x00000820 |                   32 |               |
+ |     .app_code_main              | 0x00000c00 |               25 904 |               |
+ |     .ARM.exidx                  | 0x00007130 |                    8 |               |
+ |     .copy.table                 | 0x00007138 |                   24 |               |
+ |     .zero.table                 | 0x00007150 |                    8 |               |
+ |     .data (load data)           | 0x00007158 |                  288 |               |
+ |     .app_code_ram (load data)   | 0x00007278 |                1 472 |               |
+ |   m33s_trailer                  | 0x00300000 | (  0%)             0 |       262 144 |
+ |   m33_nvm                       | 0x00340000 | (  3%)        70 548 |     2 097 152 |
+ |     .mcu_boot_header            | 0x00000000 |                1 024 |               |
+ |     .app_code_main              | 0x00000400 |               57 072 |               |
+ |     .ARM.exidx                  | 0x0000e2f0 |                    8 |               |
+ |     .copy.table                 | 0x0000e2f8 |                   24 |               |
+ |     .zero.table                 | 0x0000e310 |                    8 |               |
+ |     .app_code_ram (load data)   | 0x0000e318 |               11 760 |               |
+ |     .data (load data)           | 0x00011108 |                  652 |               |
+ |   m33_trailer                   | 0x00540000 | (  0%)             0 |       262 144 |
+ |   m55_nvm                       | 0x00580000 | (  1%)        24 832 |     2 883 584 |
+ |     .mcu_boot_header            | 0x00000000 |                1 024 |               |
+ |     .app_code_main              | 0x00000400 |               12 600 |               |
+ |     .ARM.exidx                  | 0x00003538 |                    8 |               |
+ |     .copy.table                 | 0x00003540 |                   48 |               |
+ |     .zero.table                 | 0x00003570 |                    8 |               |
+ |     .app_code_itcm (load data)  | 0x00003580 |               10 920 |               |
+ |     .data (load data)           | 0x00006028 |                  200 |               |
+ |     .cy_socmem_data (load data) | 0x000060f0 |                   24 |               |
+ |   m55_trailer                   | 0x00840000 | (  0%)             0 |       262 144 |
+ |   <unallocated>                 |            |                      |     8 912 896 |
+  -------------------------------------------------------------------------------------
+ | SOCMEM_RAM                      |            |            3 129 344 |     5 242 880 |
+ |   m55_code_secondary            | 0x00000000 | (  0%)             0 |       262 144 |
+ |   m55_data_secondary            | 0x00040000 | (100%)     2 867 200 |     2 867 200 |
+ |     .cy_socmem_data             | 0x00000000 |                   24 |               |
+ |     .heap                       | 0x00000018 |            2 867 176 |               |
+ |   m33_m55_shared                | 0x002fc000 | (100%)       262 144 |       262 144 |
+ |     .reserved_socmem            | 0x00000000 |              262 144 |               |
+ |   gfx_mem                       | 0x0033c000 | (  0%)             0 |     1 851 392 |
+ |   <unallocated>                 |            |                      |             0 |
+  -------------------------------------------------------------------------------------
+ | SRAM                            |            |              411 014 |     1 048 576 |
+ |   extended_boot_sram_reserved   | 0x00000000 | (100%)         4 096 |         4 096 |
+ |   m33s_shared                   | 0x00001000 | (  0%)             0 |         4 096 |
+ |   m33s_code                     | 0x00002000 | (  1%)         1 472 |       217 088 |
+ |     .app_code_ram               | 0x00000000 |                1 472 |               |
+ |   m33s_data                     | 0x00037000 | ( 98%)       133 113 |       135 168 |
+ |     .ram_vectors                | 0x00000000 |                  852 |               |
+ |     .data                       | 0x00000354 |                  288 |               |
+ |     .bss                        | 0x00000474 |                  120 |               |
+ |     .noinit                     | 0x000004ec |                  149 |               |
+ |     .heap                       | 0x00000588 |              131 704 |               |
+ |   m33_code                      | 0x00058000 | (  3%)        11 760 |       413 696 |
+ |     .app_code_ram               | 0x00000000 |               11 760 |               |
+ |   m33_data                      | 0x000bd000 | ( 98%)       258 041 |       262 144 |
+ |     .ram_vectors                | 0x00000000 |                  852 |               |
+ |     .data                       | 0x00000354 |                  652 |               |
+ |     .bss                        | 0x000005e0 |               13 412 |               |
+ |     .noinit                     | 0x00003a44 |                  149 |               |
+ |     .heap                       | 0x00003ae0 |              242 976 |               |
+ |   m33s_allocatable_shared       | 0x000fd000 | (  9%)           380 |         4 096 |
+ |     .cy_sharedmem               | 0x00000000 |                  380 |               |
+ |   m33_allocatable_shared        | 0x000fe000 | ( 28%)         1 160 |         4 096 |
+ |     .cy_sharedmem               | 0x00000000 |                1 160 |               |
+ |   m55_allocatable_shared        | 0x000ff000 | ( 24%)           992 |         4 096 |
+ |     .cy_sharedmem               | 0x00000000 |                  992 |               |
+ |   <unallocated>                 |            |                      |             0 |
+  -------------------------------------------------------------------------------------
+mkdir -p ../build ../build/project_hex
+(cd ../configs && C:/Users/nabil/Infineon/Tools/ModusToolbox-Edge-Protect-Security-Suite-2.2.0/tools/edgeprotecttools/bin/edgeprotecttools.exe run-config -i boot_with_extended_boot.json --symbol-search ../proj_cm33_s/../bsps/TARGET_APP_KIT_PSE84_EVAL_EPC2 ) || true
+: E : INFO  : metadata_proj_cm33_s: command "sign" validation succeeded
+: E : INFO  : Image saved to 'C:\Users\nabil\mtw-imu\PSOC_Edge_Sensor_Hub_IMU\build\project_hex\proj_cm33_s_signed.hex'
+: E : INFO  : metadata_proj_cm33_s: command "sign" succeeded
+: E : INFO  : relocate_proj_cm33_ns: command "hex-relocate" validation succeeded
+: E : INFO  : Relocating segment 0x08340400-0x08351394 to 0x60340400-0x60351394
+: E : INFO  : Saved file to '../build/project_hex/proj_cm33_ns_shifted.hex'
+: E : INFO  : relocate_proj_cm33_ns: command "hex-relocate" succeeded
+: E : INFO  : merge: command "merge" validation succeeded
+: E : INFO  : merge: command "merge" succeeded
+
+11:35:25 Build Finished. 0 errors, 0 warnings. (took 29s.131ms)
+
